@@ -763,11 +763,18 @@ const Chat = () => {
   }
 
   //prompt template 
-  const samplePrompts: [string, string][] = [['Find specific responses by topic', 'Section I. [Your Law Practice] - Target Market with International Focus'], ['Summarize information','Summarize information regarding client relationships'], ['Find themes', 'What are the common themes for the finance group found in the memo?'], ['Analyze and calculate', "What are the firn's top 10 clients?"],  ['Gather insights', "Gather the key insights from the memos"],  ['Retrieve key information', "what are the main issues to address from the memos for future growth?"]]
+  const samplePrompts: [string, string][] = [['Content analysis', ' What are the clients identified that have needs outside the U.S.?'], ['Keyword & extraction','Summarize information regarding mentions of the Chicago office'], ['Thematic analysis', 'What are the common themes found in the responses from the Finance Group?'], ['Gather insights', "Based on the memo, what are some recommendations for more effective collaboration?"],  ['Search and review', "Section I. Your Law Practice - Target Market"],  ['Semantic analysis', 'List all the people who made comments that have positive tone to them.']]
   const [textInput, setTextInput] = useState("")
 
   const handlePromptUpdate = (text: string) => {
     setTextInput(text)
+  }
+
+  //citations
+  const [fileName, setFileName] = useState("")
+
+  const updateFileName = (name: string) => {
+    setFileName(name)
   }
 
   return (
@@ -972,7 +979,7 @@ const Chat = () => {
                 horizontalAlign="space-between"
                 verticalAlign="center">
                 <span aria-label="Citations" className={styles.citationPanelHeader}>
-                  Citations
+                  {fileName}
                 </span>
                 <IconButton
                   iconProps={{ iconName: 'Cancel' }}
