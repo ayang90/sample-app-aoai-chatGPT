@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { FontIcon, Stack, TextField } from '@fluentui/react'
 import { SendRegular } from '@fluentui/react-icons'
 
@@ -8,6 +8,8 @@ import styles from './QuestionInput.module.css'
 import { ChatMessage } from '../../api'
 import { AppStateContext } from '../../state/AppProvider'
 import { resizeImage } from '../../utils/resizeImage'
+import PromptTemplate from './PromptTemplate'
+
 
 interface Props {
   onSend: (question: ChatMessage['content'], id?: string) => void
@@ -15,14 +17,22 @@ interface Props {
   placeholder?: string
   clearOnSend?: boolean
   conversationId?: string
+  input?: string
 }
 
-export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conversationId }: Props) => {
-  const [question, setQuestion] = useState<string>('')
+export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conversationId, input}: Props) => {
+  const [question, setQuestion] = useState<string>(input || '')
   const [base64Image, setBase64Image] = useState<string | null>(null);
 
   const appStateContext = useContext(AppStateContext)
   const OYD_ENABLED = appStateContext?.state.frontendSettings?.oyd_enabled || false;
+
+  useEffect(() => {
+    if (input !== undefined) {
+      setQuestion(input)
+    }
+  }, [input])
+
 
   const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -74,8 +84,12 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conv
 
   const sendQuestionDisabled = disabled || !question.trim()
 
+
   return (
+    <>
+   
     <Stack horizontal className={styles.questionInputContainer}>
+    {/* <PromptTemplate prompts={samplePrompts} handlePromptUpdate={handlePromptUpdate}/> */}
       <TextField
         className={styles.questionInputTextArea}
         placeholder={placeholder}
@@ -119,5 +133,6 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conv
       </div>
       <div className={styles.questionInputBottomBorder} />
     </Stack>
+    </>
   )
 }

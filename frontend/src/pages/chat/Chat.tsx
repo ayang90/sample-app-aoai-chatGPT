@@ -38,6 +38,8 @@ import { QuestionInput } from "../../components/QuestionInput";
 import { ChatHistoryPanel } from "../../components/ChatHistory/ChatHistoryPanel";
 import { AppStateContext } from "../../state/AppProvider";
 import { useBoolean } from "@fluentui/react-hooks";
+import PromptTemplate from '../../components/QuestionInput/PromptTemplate'
+
 
 const enum messageStatus {
   NotRunning = 'Not Running',
@@ -556,7 +558,9 @@ const Chat = () => {
         setMessages([])
       }
     }
+
     setClearingChat(false)
+    setTextInput("")
   }
 
   const tryGetRaiPrettyError = (errorMessage: string) => {
@@ -622,6 +626,7 @@ const Chat = () => {
     setActiveCitation(undefined)
     appStateContext?.dispatch({ type: 'UPDATE_CURRENT_CHAT', payload: null })
     setProcessMessages(messageStatus.Done)
+    setTextInput("")
   }
 
   const stopGenerating = () => {
@@ -757,6 +762,14 @@ const Chat = () => {
     )
   }
 
+  //prompt template 
+  const samplePrompts: [string, string][] = [['Find specific responses by topic', 'Section I. [Your Law Practice] - Target Market with International Focus'], ['Summarize information','Summarize information regarding client relationships'], ['Find themes', 'What are the common themes for the finance group found in the memo?'], ['Analyze and calculate', "What are the firn's top 10 clients?"],  ['Gather insights', "Gather the key insights from the memos"],  ['Retrieve key information', "what are the main issues to address from the memos for future growth?"]]
+  const [textInput, setTextInput] = useState("")
+
+  const handlePromptUpdate = (text: string) => {
+    setTextInput(text)
+  }
+
   return (
     <div className={styles.container} role="main">
       {showAuthMessage ? (
@@ -794,7 +807,8 @@ const Chat = () => {
                 <img src={logo} className={styles.chatIcon} aria-hidden="true" />
                 <h1 className={styles.chatEmptyStateTitle}>{ui?.chat_title}</h1>
                 <h2 className={styles.chatEmptyStateSubtitle}>{ui?.chat_description}</h2>
-                <h2> test description </h2>
+                <PromptTemplate prompts={samplePrompts} handlePromptUpdate={handlePromptUpdate}/>
+
               </Stack>
             ) : (
               <div className={styles.chatMessageStream} style={{ marginBottom: isLoading ? '40px' : '0px' }} role="log">
@@ -936,6 +950,7 @@ const Chat = () => {
                 clearOnSend
                 placeholder="Type a new question..."
                 disabled={isLoading}
+                input={textInput}
                 onSend={(question, id) => {
                   appStateContext?.state.isCosmosDBAvailable?.cosmosDB
                     ? makeApiRequestWithCosmosDB(question, id)
