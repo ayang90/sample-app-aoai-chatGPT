@@ -763,7 +763,7 @@ const Chat = () => {
   }
 
   //prompt template 
-  const samplePrompts: [string, string][] = [['Content analysis', ' What are the clients identified that have needs outside the U.S.?'], ['Keyword & extraction','Summarize information regarding mentions of the Chicago office'], ['Thematic analysis', 'What are the common themes found in the responses from the Finance Group?'], ['Gather insights', "Based on the memo, what are some recommendations for more effective collaboration?"],  ['Search and review', "Section I. Your Law Practice - Target Market"],  ['Semantic analysis', 'List all the people who made comments that have positive tone to them.']]
+  const samplePrompts: [string, string][] = [['Content analysis', ' What are the clients identified that have needs outside the U.S.?'], ['Keyword & extraction','Summarize information regarding mentions of the Chicago office'], ['Thematic analysis', 'What are the common themes across practices that are growing or have near-term potential to grow?'], ['Gather insights', "Based on the memo, what are some recommendations for more effective collaboration?"],  ['Search and review', "Section I. Your Law Practice - Target Market"],  ['Semantic analysis', 'List all the people who made comments that have positive tone to them.']]
   const [textInput, setTextInput] = useState("")
 
   const handlePromptUpdate = (text: string) => {
