@@ -770,12 +770,6 @@ const Chat = () => {
     setTextInput(text)
   }
 
-  //citations
-  const [fileName, setFileName] = useState("")
-
-  const updateFileName = (name: string) => {
-    setFileName(name)
-  }
 
   return (
     <div className={styles.container} role="main">
@@ -979,7 +973,7 @@ const Chat = () => {
                 horizontalAlign="space-between"
                 verticalAlign="center">
                 <span aria-label="Citations" className={styles.citationPanelHeader}>
-                  {fileName}
+                  Citations
                 </span>
                 <IconButton
                   iconProps={{ iconName: 'Cancel' }}
