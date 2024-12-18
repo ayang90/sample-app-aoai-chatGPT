@@ -763,12 +763,16 @@ const Chat = () => {
   }
 
   //prompt template 
-  const samplePrompts: [string, string][] = [['Content analysis', ' What are the clients identified that have needs outside the U.S.?'], ['Keyword & extraction','Summarize information regarding mentions of the Chicago office'], ['Thematic analysis', 'What are the common themes across practices that are growing or have near-term potential to grow?'], ['Gather insights', "Based on the memo, what are some recommendations for more effective collaboration?"],  ['Search and review', "Section I. Your Law Practice - Target Market"],  ['Semantic analysis', 'List all the people who made comments that have positive tone to them.']]
+  const samplePrompts: [string, string][] = [['Example', 'What are the clients identified that have needs outside the U.S.?'], ['Example','Who expressed optimism about the Chicago office?'], ['Example', 'What are the common themes across practices that are growing or have near-term potential to grow?'], ['Example', "What are some recommendations for more effective collaboration?"],  ['Example', "Which industries or markets should we target as a firm?"],  ['Example', 'Are people satisfied with the centralized billing system?']]
+
   const [textInput, setTextInput] = useState("")
+  const [partnerName, setPartnerName] = useState("")
+
 
   const handlePromptUpdate = (text: string) => {
     setTextInput(text)
   }
+
 
 
   return (
@@ -805,10 +809,13 @@ const Chat = () => {
           <div className={styles.chatContainer}>
             {!messages || messages.length < 1 ? (
               <Stack className={styles.chatEmptyState}>
-                <img src={logo} className={styles.chatIcon} aria-hidden="true" />
+                {/* <img src={logo} className={styles.chatIcon} aria-hidden="true" /> */}
                 <h1 className={styles.chatEmptyStateTitle}>{ui?.chat_title}</h1>
-                <h2 className={styles.chatEmptyStateSubtitle}>{ui?.chat_description}</h2>
-                <PromptTemplate prompts={samplePrompts} handlePromptUpdate={handlePromptUpdate}/>
+                <h2 className={styles.chatEmptyStateSubtitle}>
+                The answers provided by this chatbot are generated through a large language model and may not always be accurate. You should verify any information that is provided by this application. To begin, type a prompt/question in the chat box below and press enter.  If you do not get the response you are looking for, feel free to ask follow up questions or rephrase.  The chatbot can carry a conversation. For more prompt information, refer to document number 123.  
+                  {/* {ui?.chat_description} */}
+                </h2>
+                {/* <PromptTemplate prompts={samplePrompts} handlePromptUpdate={handlePromptUpdate}/> */}
 
               </Stack>
             ) : (
@@ -949,7 +956,7 @@ const Chat = () => {
               </Stack>
               <QuestionInput
                 clearOnSend
-                placeholder="Type a new question..."
+                placeholder="Ask a question..."
                 disabled={isLoading}
                 input={textInput}
                 onSend={(question, id) => {
@@ -962,6 +969,14 @@ const Chat = () => {
                 }
               />
             </Stack>
+            {(!messages || messages.length < 1) && 
+              <Stack className={styles.promptTemplateContainer}>
+                <div className={styles.chatEmptyStateSubtitle}> 
+                  Below are some example prompts that you can ask the chatbot.  These are only examples.  Click on the example to populate the chat with that prompt.  You may also type any prompt or question you have above.
+                </div>
+            <PromptTemplate prompts={samplePrompts} handlePromptUpdate={handlePromptUpdate}/>
+            </Stack> }
+           
           </div>
           {/* Citation Panel */}
           {messages && messages.length > 0 && isCitationPanelOpen && activeCitation && (
@@ -973,7 +988,7 @@ const Chat = () => {
                 horizontalAlign="space-between"
                 verticalAlign="center">
                 <span aria-label="Citations" className={styles.citationPanelHeader}>
-                  Citations
+                  {activeCitation.filepath} 
                 </span>
                 <IconButton
                   iconProps={{ iconName: 'Cancel' }}
