@@ -763,7 +763,7 @@ const Chat = () => {
   }
 
   //prompt template 
-  const samplePrompts: [string, string][] = [['Example', 'What are the clients identified that have needs outside the U.S.?'], ['Example','Who expressed optimism about the Chicago office?'], ['Example', 'What are the common themes across practices that are growing or have near-term potential to grow?'], ['Example', "What are some recommendations for more effective collaboration?"],  ['Example', "Which industries or markets should we target as a firm?"],  ['Example', 'Are people satisfied with the centralized billing system?']]
+  const samplePrompts: [string, string][] = [['Example', 'What clients are identified as having needs outside of the U.S.?'], ['Example','Who expressed optimism about the Chicago office?'], ['Example', 'What are the common themes across practices that are growing or have near-term potential to grow?'], ['Example', "What are some recommendations for more effective collaboration?"],  ['Example', "Which industries or markets should we target as a firm?"],  ['Example', 'Are people satisfied with the centralized billing system?']]
 
   const [textInput, setTextInput] = useState("")
   const [partnerName, setPartnerName] = useState("")
