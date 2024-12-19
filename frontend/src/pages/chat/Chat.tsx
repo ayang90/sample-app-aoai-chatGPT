@@ -812,7 +812,7 @@ const Chat = () => {
                 {/* <img src={logo} className={styles.chatIcon} aria-hidden="true" /> */}
                 <h1 className={styles.chatEmptyStateTitle}>{ui?.chat_title}</h1>
                 <h2 className={styles.chatEmptyStateSubtitle}>
-                The answers provided by this chatbot are generated through a large language model and may not always be accurate. You should verify any information that is provided by this application. To begin, type a prompt/question in the chat box below and press enter.  If you do not get the response you are looking for, feel free to ask follow up questions or rephrase.  The chatbot can carry a conversation. For more prompt information, refer to document number 123.  
+                The answers provided by this chatbot are generated through a large language model and may not always be accurate. You should verify any information that is provided by this application. To begin, type a prompt/question in the chat box below and press enter.  If you do not get the response you are looking for, feel free to ask follow up questions or rephrase.  The chatbot can carry a conversation. For more prompt information, refer to document number <a href="https://dms.alston.com/work/link/d/ADMIN!23315544.1" target="_blank">23315544</a>.  
                   {/* {ui?.chat_description} */}
                 </h2>
                 {/* <PromptTemplate prompts={samplePrompts} handlePromptUpdate={handlePromptUpdate}/> */}

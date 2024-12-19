@@ -16,7 +16,7 @@ const PromptTemplate = ({prompts, handlePromptUpdate}: PromptProp) => {
             }
           }  
           key={index}>
-          <div className={styles.templateButtonHeader}>  {text[0]} </div> 
+          {/* <div className={styles.templateButtonHeader}>  {text[0]} </div>  */}
           <div className={styles.templateButtonExample}> {text[1]} </div>
         </button>
 
