@@ -815,7 +815,7 @@ const Chat = () => {
               <Stack className={styles.chatEmptyState}>
                 {/* <img src={logo} className={styles.chatIcon} aria-hidden="true" /> */}
                 <h1 className={styles.chatEmptyStateTitle}>{ui?.chat_title}</h1>
-                <h3 className={styles.chatEmptyStateSubtitle}>An AI tool designed to provide information and answer questions about the firm's partner memos. </h3>
+                <h3 className={styles.chatEmptyStateSubtitle}> An AI query tool for the firm’s partner planning memos. </h3>
                 <div className={styles.descContainer}>
                   <div className={styles.iconContainer}>
                     <FontAwesomeIcon icon={faCheckCircle} size='2x' className={styles.primColor}/>
