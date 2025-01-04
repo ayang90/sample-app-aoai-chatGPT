@@ -1,4 +1,6 @@
 import styles from './QuestionInput.module.css'
+import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faSearch} from '@fortawesome/free-solid-svg-icons'
 
 interface PromptProp {
     prompts: string[][]
@@ -17,6 +19,7 @@ const PromptTemplate = ({prompts, handlePromptUpdate}: PromptProp) => {
           }  
           key={index}>
           {/* <div className={styles.templateButtonHeader}>  {text[0]} </div>  */}
+          <FontAwesomeIcon icon={faSearch} size="sm"/>
           <div className={styles.templateButtonExample}> {text[1]} </div>
         </button>
 

@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect, useContext, useLayoutEffect } from 'react'
-import { CommandBarButton, IconButton, Dialog, DialogType, Stack } from '@fluentui/react'
+import { CommandBarButton, IconButton, Dialog, DialogType, Stack, Check } from '@fluentui/react'
 import { SquareRegular, ShieldLockRegular, ErrorCircleRegular } from '@fluentui/react-icons'
 
 import ReactMarkdown from 'react-markdown'
@@ -14,6 +14,10 @@ import { nord } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import styles from './Chat.module.css'
 import Contoso from '../../assets/Contoso.svg'
 import { XSSAllowTags } from '../../constants/sanatizeAllowables'
+import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faCheckCircle} from '@fortawesome/free-solid-svg-icons'
+import {faEdit} from '@fortawesome/free-solid-svg-icons'
+
 
 import {
   ChatMessage,
@@ -811,11 +815,19 @@ const Chat = () => {
               <Stack className={styles.chatEmptyState}>
                 {/* <img src={logo} className={styles.chatIcon} aria-hidden="true" /> */}
                 <h1 className={styles.chatEmptyStateTitle}>{ui?.chat_title}</h1>
-                <h2 className={styles.chatEmptyStateSubtitle}>
-                The answers provided by this chatbot are generated through a large language model and may not always be accurate. You should verify any information that is provided by this application. To begin, type a prompt/question in the chat box below and press enter.  If you do not get the response you are looking for, feel free to ask follow up questions or rephrase.  The chatbot can carry a conversation. For more prompt information, refer to document number<a href="https://dms.alston.com/work/link/d/ADMIN!23315544.1" target="_blank">23315544.</a>  
-                  {/* {ui?.chat_description} */}
-                </h2>
-                {/* <PromptTemplate prompts={samplePrompts} handlePromptUpdate={handlePromptUpdate}/> */}
+                <h3 className={styles.chatEmptyStateSubtitle}>An AI tool designed to provide information and answer questions about the firm's partner memos. </h3>
+                <div className={styles.descContainer}>
+                  <div className={styles.iconContainer}>
+                    <FontAwesomeIcon icon={faCheckCircle} size='2x' className={styles.primColor}/>
+                    <p> The answers provided by this chatbot are generated through a large language model and may not always be accurate. You should verify any information that is provided by this application.</p>
+                  </div>
+                  <div className={styles.iconContainer}>
+                    <FontAwesomeIcon icon={faEdit} size='2x' className={styles.primColor}/>
+                    <p> To begin, type a prompt/question in the chat box below and press enter. If you do not get the response you are looking for, feel free to ask follow up questions or rephrase. The chatbot can carry a conversation. For more prompt information, refer to document number <a href="https://dms.alston.com/work/link/d/ADMIN!23315544.1" target="_blank" className={styles.secTextColor}>23315544.</a>
+            
+                    </p>
+                  </div>
+                </div>
 
               </Stack>
             ) : (
@@ -927,8 +939,8 @@ const Chat = () => {
                     },
                     root: {
                       color: '#FFFFFF',
-                      background:
-                        'radial-gradient(109.81% 107.82% at 100.1% 90.19%, #0F6CBD 33.63%, #2D87C3 70.31%, #8DDDD8 100%)'
+                      background: '#2980B9'
+
                     },
                     rootDisabled: {
                       background: '#F0F0F0'
@@ -972,8 +984,9 @@ const Chat = () => {
             {(!messages || messages.length < 1) && 
               <Stack className={styles.promptTemplateContainer}>
                 <div className={styles.chatEmptyStateSubtitle}> 
-                  Below are some example prompts that you can ask the chatbot.  These are only examples.  Click on the example to populate the chat with that prompt.  You may also type any prompt or question you have above.
+                Need ideas? Try these example prompts                
                 </div>
+                <p className={styles.subDesc}> Please note that these are only examples. Click on the example to populate the chat with that prompt.  You may also type any prompt or question you have above. </p>
             <PromptTemplate prompts={samplePrompts} handlePromptUpdate={handlePromptUpdate}/>
             </Stack> }
            

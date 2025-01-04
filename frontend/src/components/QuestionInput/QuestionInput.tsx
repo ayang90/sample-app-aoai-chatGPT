@@ -131,7 +131,7 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conv
           <img src={Send} className={styles.questionInputSendButton} alt="Send Button" />
         )}
       </div>
-      <div className={styles.questionInputBottomBorder} />
+      {/* <div className={styles.questionInputBottomBorder} /> */}
     </Stack>
     </>
   )
